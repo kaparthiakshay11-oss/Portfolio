@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Smart Sleep-Based AC Control | Akshay Kaparthi</title>
 <meta name="description" content="An ESP32-powered bedside device that reads body comfort, not room temperature, and adjusts an air conditioner automatically through the night.">
-<link rel="canonical" href="https://akshaykaparthi-portfolio.example.com/smart-ac.html">
+<link rel="canonical" href="https://akshaykaparthi.com/smart-ac.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Smart Sleep-Based AC Control | Akshay Kaparthi">
 <meta property="og:description" content="An ESP32-powered bedside device that reads body comfort, not room temperature, and adjusts an air conditioner automatically through the night.">
-<meta property="og:url" content="https://akshaykaparthi-portfolio.example.com/smart-ac.html">
+<meta property="og:url" content="https://akshaykaparthi.com/smart-ac.html">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Smart Sleep-Based AC Control | Akshay Kaparthi">
 <meta name="twitter:description" content="An ESP32-powered bedside device that reads body comfort, not room temperature, and adjusts an air conditioner automatically through the night.">
@@ -38,6 +38,12 @@
   .readout{display:grid;grid-template-columns:repeat(3,auto);gap:28px;font-family:'Space Mono',monospace;text-align:right;}
   .readout div span{display:block;font-size:10px;letter-spacing:0.1em;color:#8B92C9;text-transform:uppercase;margin-bottom:4px;}
   .readout div b{font-size:22px;font-weight:400;color:#fff;}
+  @media(max-width:520px){
+    .readout{grid-template-columns:repeat(3,1fr);gap:12px;text-align:left;width:100%;}
+    .readout div b{font-size:17px;}
+    .impact-cell{padding:30px 24px;}
+    .impact-cell .stat{font-size:46px;}
+  }
   #acState{transition:color .3s ease;}
   .chart-area{position:relative;margin-top:36px;}
   svg#curve{width:100%;height:220px;display:block;overflow:visible;}

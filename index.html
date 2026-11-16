@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Akshay Kaparthi — UI/UX Designer</title>
 <meta name="description" content="Akshay Kaparthi is a UI/UX designer and Bachelor of Design student at PES University, crafting user-centred digital products and physical-computing prototypes.">
-<link rel="canonical" href="https://akshaykaparthi-portfolio.example.com/index.html">
+<link rel="canonical" href="https://akshaykaparthi.com/index.html">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Akshay Kaparthi — UI/UX Designer">
 <meta property="og:description" content="Akshay Kaparthi is a UI/UX designer and Bachelor of Design student at PES University, crafting user-centred digital products and physical-computing prototypes.">
-<meta property="og:url" content="https://akshaykaparthi-portfolio.example.com/index.html">
+<meta property="og:url" content="https://akshaykaparthi.com/index.html">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Akshay Kaparthi — UI/UX Designer">
 <meta name="twitter:description" content="Akshay Kaparthi is a UI/UX designer and Bachelor of Design student at PES University, crafting user-centred digital products and physical-computing prototypes.">
@@ -28,6 +28,7 @@
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
   .hero h1 .line2{display:block;margin-top:8px;}
+  @media(max-width:1440px){.hero h1 .line2 br{display:none;}}
   .hero-sub-row{display:grid;grid-template-columns:1.4fr 1fr;gap:56px;margin-top:44px;align-items:end;}
   @media(max-width:860px){.hero-sub-row{grid-template-columns:1fr;gap:32px;}}
 
@@ -53,6 +54,19 @@
     padding:8px 12px;border-radius:20px;font-weight:700;
   }
   @media(max-width:860px){.portrait-frame{justify-self:start;max-width:200px;}}
+  @media(max-width:720px){
+    .hero{padding-top:48px;}
+    .mode-pill{padding:10px 14px;}
+    .scroll-cue{margin-top:36px;}
+    .marquee{margin-top:40px;padding:16px 0;}
+    .bento-feature{min-height:0;padding:28px;}
+    .bento-feature .mini-curve{height:70px;}
+    .photo-grid img{height:300px;}
+    .stat-cell .num{font-size:36px;}
+  }
+  @media(min-width:721px) and (max-width:900px){
+    .photo-grid img{height:260px;}
+  }
 
   .scroll-cue{
     margin-top:60px;font-family:'Space Mono',monospace;font-size:11px;letter-spacing:0.1em;
@@ -159,12 +173,16 @@
 <div class="topbar">
   <div class="wrap">
     <a class="brand" href="index.html">Akshay Kaparthi<span class="dot">.</span></a>
-    <div class="nav-links">
+    <div class="nav-actions">
+      <a class="btn" href="https://drive.google.com/file/d/117BAnbQKgKm5EP1gpgUWCl3nRIHxHGs1/view?usp=sharing" target="_blank" rel="noopener">Résumé</a>
+      <button class="nav-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="siteNav"><span></span></button>
+    </div>
+    <div class="nav-links" id="siteNav">
       <a href="#work">Work</a>
       <a href="#about">About</a>
       <a href="#photography">Photography</a>
       <a href="#contact">Contact</a>
-      <a class="btn" style="padding:9px 18px;" href="https://drive.google.com/file/d/1P_C8m7RP69a4OOGri_ojBz1IIHoFiYG4/view?usp=drivesdk" target="_blank" rel="noopener">Résumé</a>
+      <a class="btn" style="padding:9px 18px;" href="https://drive.google.com/file/d/117BAnbQKgKm5EP1gpgUWCl3nRIHxHGs1/view?usp=sharing" target="_blank" rel="noopener">Résumé</a>
     </div>
   </div>
 </div>
@@ -172,7 +190,7 @@
 <section class="hero">
   <div class="wrap">
     <div class="hero-eyebrow eyebrow">UI/UX Designer · Bachelor of Design, PES University</div>
-    <h1>Akshay Kaparthi.<span class="line2">Design that survives contact<br>with real people.</span></h1>
+    <h1>Akshay Kaparthi.<span class="line2">Design that survives contact <br>with real people.</span></h1>
 
     <div class="hero-sub-row">
       <div>
@@ -314,7 +332,7 @@
       <p>I'm looking for a team that treats research, interaction detail, and visual craft as one job, not three. If that's you — I'd love to talk.</p>
       <div class="contact-actions">
         <a class="btn" href="mailto:kaparthiakshay11@gmail.com">Get in touch</a>
-        <a class="btn ghost" href="https://drive.google.com/file/d/1P_C8m7RP69a4OOGri_ojBz1IIHoFiYG4/view?usp=drivesdk" target="_blank" rel="noopener">Download résumé</a>
+        <a class="btn ghost" href="https://drive.google.com/file/d/117BAnbQKgKm5EP1gpgUWCl3nRIHxHGs1/view?usp=sharing" target="_blank" rel="noopener">Download résumé</a>
         <a class="btn ghost" href="https://www.linkedin.com/in/akshay-kaparthi-b77189186" target="_blank" rel="noopener">LinkedIn</a>
       </div>
     </div>

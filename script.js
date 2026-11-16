@@ -1,6 +1,24 @@
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Mouse/trackpad only — tilt + magnetic effects feel broken on touch screens
+const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  /* ---------------- Mobile menu ---------------- */
+  const topbar = document.querySelector('.topbar');
+  const toggle = document.querySelector('.nav-toggle');
+  if (topbar && toggle) {
+    const setOpen = (open) => {
+      topbar.classList.toggle('open', open);
+      toggle.setAttribute('aria-expanded', String(open));
+      toggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    };
+    toggle.addEventListener('click', () => setOpen(!topbar.classList.contains('open')));
+    topbar.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+    document.addEventListener('click', (e) => { if (!topbar.contains(e.target)) setOpen(false); });
+    window.matchMedia('(min-width: 821px)').addEventListener('change', (m) => { if (m.matches) setOpen(false); });
+  }
 
   /* ---------------- Reveal on scroll ---------------- */
   const revealEls = document.querySelectorAll('[data-reveal]');
@@ -63,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const spot = document.createElement('div');
     spot.className = 'hero-spotlight';
     hero.prepend(spot);
-    if (!reducedMotion) {
+    if (!reducedMotion && finePointer) {
       hero.addEventListener('pointermove', (e) => {
         const r = hero.getBoundingClientRect();
         spot.style.setProperty('--sx', ((e.clientX - r.left) / r.width) * 100 + '%');
@@ -73,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
   /* ---------------- Card tilt ---------------- */
-  if (!reducedMotion) {
+  if (!reducedMotion && finePointer) {
     document.querySelectorAll('.card, .bento-card, .bento-feature').forEach(card => {
       card.style.transition = 'transform .25s ease, background .3s ease, box-shadow .3s ease, border-color .3s ease';
       card.addEventListener('pointermove', (e) => {
@@ -106,9 +124,23 @@ document.addEventListener('DOMContentLoaded', () => {
   let w, h, stars, shootingStars = [];
   const STAR_COUNT_DENSITY = 9000; // px^2 per star
 
+  // Smaller orbs on phones so the blur doesn't swamp the screen
+  if (window.innerWidth < 720) {
+    document.querySelectorAll('.orb').forEach(o => { o.style.width = o.style.height = '300px'; });
+  }
+
+  // Sharp on retina screens; only reshuffle stars when the WIDTH changes
+  // (phones fire resize on every scroll as the address bar hides/shows)
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  let lastW = 0;
   function resize(){
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = w * dpr; canvas.height = h * dpr;
+    canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    if (w === lastW && stars) return;
+    lastW = w;
     const count = Math.min(180, Math.floor((w * h) / STAR_COUNT_DENSITY));
     stars = Array.from({ length: count }, () => ({
       x: Math.random() * w,
